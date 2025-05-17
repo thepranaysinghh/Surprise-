@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Birthday Surprise</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top right, #ffe6f0, #ffffff);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow-x: hidden;
+      text-align: center;
+    }
+    .screen {
+      display: none;
+      padding: 30px 20px;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    .active {
+      display: block;
+      animation: fadein 1.5s;
+    }
+    h1, h2, p {
+      color: #d6336c;
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 18px;
+      background: #ff8fab;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #e75480;
+    }
+    .candles {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+    }
+    .candle {
+      width: 6px;
+      height: 30px;
+      background: #ffcf33;
+      position: relative;
+      animation: flicker 1s infinite;
+    }
+    .candle::before {
+      content: '';
+      width: 6px;
+      height: 10px;
+      background: orange;
+      border-radius: 50%;
+      position: absolute;
+      top: -10px;
+      left: 0;
+    }
+    @keyframes flicker {
+      0% {opacity: 1;}
+      50% {opacity: 0.4;}
+      100% {opacity: 1;}
+    }
+    @keyframes fadein {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+
+  <div id="screen1" class="screen active">
+    <h2>Aaj ka din kisi ke liye bohot khaas hai...</h2>
+    <p>Tap to unwrap your birthday surprise 🎁</p>
+    <button class="btn" onclick="nextScreen()">Unwrap</button>
+  </div>
+
+  <div id="screen2" class="screen">
+    <h2>Happy Birthday, Sweetiee! 🎉</h2>
+    <p>
+      Today is a very special day for you, and I sincerely pray that all your wishes come true.<br>
+      Your smile brightens my world, and my happiness lies in your happiness.<br><br>
+      I may not hold a special place in your life, but your name is included in all my prayers.
+    </p>
+    <button class="btn" onclick="nextScreen()">Tap to move ahead…</button>
+  </div>
+
+  <div id="screen3" class="screen">
+    <h2>Blow the Candles 🎂</h2>
+    <div class="candles" id="candles">
+      <!-- 20 candles -->
+      <div class="candle"></div><div class="candle"></div><div class="candle"></div>
+      <div class="candle"></div><div class="candle"></div><div class="candle"></div>
+      <div class="candle"></div><div class="candle"></div><div class="candle"></div>
+      <div class="candle"></div><div class="candle"></div><div class="candle"></div>
+      <div class="candle"></div><div class="candle"></div><div class="candle"></div>
+      <div class="candle"></div><div class="candle"></div><div class="candle"></div>
+      <div class="candle"></div><div class="candle"></div>
+    </div>
+    <button class="btn" onclick="blowCandles()">Blow Candles</button>
+  </div>
+
+  <div id="screen4" class="screen">
+    <h2>Emotion Layer 💫</h2>
+    <p>
+      How can a girl look so gorgeous all the time?<br>
+      Is it any Behaim!? No!<br><br>
+      "Aaap hi ke bina hu kyun Bechain;<br>
+      Aaap hi kyun meri Zaroorat hain,<br>
+      Behaim itnaaaaa Haseen nhi hota...<br>
+      Waaqaih aap KhoobSoorat hain!!"
+    </p>
+    <button class="btn" onclick="nextScreen()">Continue</button>
+  </div>
+
+  <div id="screen5" class="screen">
+    <h2>🎈 Balloon Break 🎈</h2>
+    <p>Balloons floating to spread more joy...</p>
+    <button class="btn" onclick="nextScreen()">Next</button>
+  </div>
+
+  <div id="screen6" class="screen">
+    <h2>Shayari Touch 💌</h2>
+    <p>
+      “प्रिय! अंजलि...,🤌🏻💝<br><br>
+      ...............................................................................<br><br>
+      सदा तुम्हारा 🎀!<br><br>
+      लिखा बीच मैं क्या ⁉👆🏻.... ये तुमको पढ़ना है ,<br>
+      कागज पर मन की भाषा का अर्थ समझना है 👍🏻<br>
+      और जो भी अर्थ निकालोगी तुम... वो मुझको स्वीकार ! 😞<br><br>
+      झुके नयन.... मौन अधर....या कोरा कागज ;<br>
+      अर्थ सभी का प्यार 🎀
+    </p>
+    <button class="btn" onclick="nextScreen()">Last One</button>
+  </div>
+
+  <div id="screen7" class="screen">
+    <h2>Yeh sab kehne wala kaun tha...? 🤫</h2>
+    <p>
+      “Your lovingly,”<br>
+      “Abhi bhi naam jaan ne ki zaroorat hai<br>
+      The most Irritating Guy! yk?” 💌
+    </p>
+  </div>
+
+  <script>
+    let currentScreen = 1;
+    function nextScreen() {
+      document.getElementById('screen' + currentScreen).classList.remove('active');
+      currentScreen++;
+      document.getElementById('screen' + currentScreen).classList.add('active');
+    }
+
+    function blowCandles() {
+      const candles = document.querySelectorAll('.candle');
+      candles.forEach(c => {
+        c.style.background = "#ddd";
+        c.style.animation = "none";
+        c.style.boxShadow = "none";
+      });
+      setTimeout(nextScreen, 1000);
+    }
+  </script>
+
+</body>
+</html>
